@@ -10,7 +10,19 @@ terraform {
 
 provider "azuread" {}
 
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+  default     = "dev"
+}
+
+variable "app_name" {
+  description = "App registration name"
+  type        = string
+  default     = "AppRegistrationsByGitHubActions"
+}
+
 # 2. Create the Application
 resource "azuread_application" "gh_app" {
-  display_name = "AppRegistrationsByGitHubActions"
+  display_name = "${var.app_name}-${var.environment}"
 }
