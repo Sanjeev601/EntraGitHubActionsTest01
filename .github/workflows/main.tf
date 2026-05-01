@@ -6,5 +6,5 @@ resource "azuread_application" "TestApp" {
 }
 
 resource "azuread_service_principal" "app_sp" {
-  application_id = azuread_application.TestApp.application_id
+  client_id = azuread_application.TestApp.application_id
 }
