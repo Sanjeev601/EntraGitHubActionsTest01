@@ -1,10 +1,16 @@
-provider "azuread" {}
-
-resource "azuread_application" "TestApp" {
-  display_name     = "TestApp"
-  sign_in_audience = "AzureADMyOrg"
+# 1. The Provider
+terraform {
+  required_providers {
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.53"
+    }
+  }
 }
 
-resource "azuread_service_principal" "app_sp" {
-  client_id = azuread_application.TestApp.application_id
+provider "azuread" {}
+
+# 2. Create the Application
+resource "azuread_application" "gh_app" {
+  display_name = "AppRegistrationsByGitHubActions"
 }
